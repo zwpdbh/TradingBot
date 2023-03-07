@@ -10,3 +10,5 @@ nuget Thoth.Json.Net 10.0.0
 nuget Newtonsoft.Json >= 12.0.3
 nuget Microsoft.dotnet-interactive >= 1.0.355307 
 nuget Microsoft.DotNet.Interactive.ExtensionLab >= 1.0.0-beta.23152.2
+
+nuget Websocket.Client >= 4.4.43

@@ -1,2 +1,30 @@
+GENERATE-LOAD-SCRIPTS: ON
 STORAGE: NONE
-RESTRICTION: || (== net5.0) (== netstandard2.0) (== netstandard2.1)
+RESTRICTION: == net6.0
+NUGET
+  remote: https://api.nuget.org/v3/index.json
+    Expecto (9.0.4)
+      FSharp.Core (>= 4.6)
+      Mono.Cecil (>= 0.11.3)
+    Fable.Core (3.7.1)
+    FSharp.Core (7.0.200)
+    Microsoft.dotnet-interactive (1.0.415202)
+    Microsoft.DotNet.Interactive.ExtensionLab (1.0.0-beta.23152.2)
+    Mono.Cecil (0.11.4)
+    Newtonsoft.Json (13.0.2)
+    System.Collections.Immutable (7.0)
+      System.Runtime.CompilerServices.Unsafe (>= 6.0)
+    System.Reactive (5.0)
+    System.Runtime.CompilerServices.Unsafe (6.0)
+    System.Threading.Channels (7.0)
+    Thoth.Json.Net (10.0)
+      Fable.Core (>= 3.1.6 < 4.0)
+      FSharp.Core (>= 4.7.2)
+      Newtonsoft.Json (>= 11.0.2)
+    Websocket.Client (4.6.1)
+      System.Reactive (>= 5.0)
+      System.Threading.Channels (>= 5.0)
+    YoloDev.Expecto.TestSdk (0.13.3)
+      Expecto (>= 9.0 < 10.0)
+      FSharp.Core (>= 4.6.2)
+      System.Collections.Immutable (>= 6.0)
