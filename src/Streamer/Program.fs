@@ -1,6 +1,10 @@
-﻿namespace Streamer 
+﻿//Streamer.Binance.startStreaming "ethusd"
+
+namespace Streamer 
+
 module Main = 
     [<EntryPoint>]
     let main argv = 
-        Binance.example01 "ethusd"
+
+        Binance.startStreaming "ethusd"
         0

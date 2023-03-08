@@ -1,29 +1,63 @@
 ﻿namespace Streamer 
 
-
-
 module Binance = 
     // How to use websocket to do something similar from
     // https://book.elixircryptobot.com/stream-live-cryptocurrency-prices-from-the-binance-wss.html#create-a-supervised-application-inside-an-umbrella
-
     open Websocket.Client
+
+    //open System.Net.WebSockets
+    //open System.Threading
+    //open System.Threading.Tasks
     //open System.Net.WebSockets
     open System
 
-    let endpoint = "wss://stream.binance.com:9443/ws/"
+    let endpoint = "wss://stream.binance.us:9443/ws/"
 
     let tradeUrl (symbol: string) = 
-        $"{endpoint}{symbol.ToLower()}@trade"
+        endpoint + symbol.ToLower() + "@trade" 
 
-    let example01 symbol = 
-        // See: http://www.fssnip.net/88W/title/Websocket-request-blocking
+
+    let processMessage (msg: ResponseMessage) = 
+        // It received something like:
+        //{"e":"trade","E":1678281305803,"s":"ETHUSD","t":44172879,"p":"1549.38000000","q":"0.05300000","b":1478766161,"a":1479008752,"T":1678281305802,"m":true,"M":true}
+        printfn $"Received message: {msg}"
+
+    let processReconnection (msg: Models.ReconnectionInfo) = 
+        printfn $"Reconnection happened, type: {msg.Type}"
+
+    let processDisconnection (msg: DisconnectionInfo) = 
+        printfn $"disconnected: {msg}"
+
+    let rec receiveMessage (ws: WebsocketClient) =       
         async {
-            let client = new WebsocketClient(new Uri(tradeUrl symbol))
-            client.MessageReceived.Add (fun x -> 
-                printfn "%A" x
-            )
-            do! client.Start() |> Async.AwaitTask
-        } |> Async.RunSynchronously
+            do! receiveMessage ws
+        }
 
+    let runClient (ws: WebsocketClient) = 
+        async {
+            
+            do! ws.Start() |> Async.AwaitTask
+            do! [
+                    receiveMessage ws 
+                ] |> Async.Parallel |> Async.Ignore
+        }
+
+
+
+    let startStreaming (symbol: string) = 
+        let ws = new WebsocketClient(new Uri(tradeUrl symbol))
+
+        ws.ReconnectTimeout <- TimeSpan.FromSeconds 30
+        ws.DisconnectionHappened.Subscribe processDisconnection |> ignore
+        ws.ReconnectionHappened.Subscribe processReconnection |> ignore
+        ws.MessageReceived.Subscribe processMessage |> ignore
+
+        runClient ws |> Async.RunSynchronously
+
+        
+
+
+
+    
         
 
