@@ -1,8 +1,8 @@
-﻿//Streamer.Binance.startStreaming "ethusd"
+﻿
 
 namespace Streamer 
 
-module Main = 
+module OStreamerMain = 
     [<EntryPoint>]
     let main argv = 
 
