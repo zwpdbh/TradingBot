@@ -5,8 +5,9 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+	<Compile Include="Library.fs" />
+    <Compile Include="Models.fs" />
     <None Include="paket.references" />
-    <Compile Include="Library.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

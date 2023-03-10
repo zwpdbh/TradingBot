@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tools\Tools.fsproj" />
+    <ProjectReference Include="..\Common\Common.fsproj" />
+    <ProjectReference Include="..\Naive\Naive.fsproj" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

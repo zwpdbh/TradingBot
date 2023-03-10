@@ -1,4 +1,4 @@
-﻿namespace Tools
+﻿namespace Common
 
 module Logging =
 

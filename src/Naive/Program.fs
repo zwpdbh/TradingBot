@@ -6,5 +6,5 @@ module NavieMain =
 
     [<EntryPoint>]
     let main argv = 
-        Trader.start() |> ignore
+        //Trader.start() |> ignore
         0
