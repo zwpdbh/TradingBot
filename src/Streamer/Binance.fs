@@ -17,7 +17,6 @@ module Binance =
         endpoint + symbol.ToLower() + "@trade" 
 
 
-
     let processMessage (msg: ResponseMessage) (trader: Trader) = 
         // It received something like:
         //{"e":"trade","E":1678281305803,"s":"ETHUSD","t":44172879,"p":"1549.38000000","q":"0.05300000","b":1478766161,"a":1479008752,"T":1678281305802,"m":true,"M":true}

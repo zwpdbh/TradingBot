@@ -54,25 +54,32 @@ module Trader =
                         let! msg = inbox.Receive() 
                         match state, msg with 
                         | NewTrader, _ ->
-                            // TODO: call binance API to get buy_order 
+                            // TODO: call binance API to get buyOrder
+                            log 2 $"-> New Trade: ${msg}"
                             let buyOrder = {
                                 price = 100M
-                                orderId = 123
+                                orderId = 4567123
                                 origQty = 100M
                             }
                             return! loop(BuyPlaced buyOrder)
 
                         | BuyPlaced buyOrder, msg when buyOrder.orderId = msg.buyerOrderId -> 
-                            // calculate sell price
-                            // call binance api
+                        //| BuyPlaced buyOrder, msg -> 
+                            // TODO:: calculate sell price 
+                            // call binance api to get sellOrder 
+                            log 2 $"-> BuyPlaced: ${msg}"
+
                             let sellOrder = {
-                                orderId = 124
+                                orderId = 4524123
                                 origQty = 100M
                             }
                             return! loop(SellPlaced sellOrder)
-
                         | SellPlaced sellOrder, msg when sellOrder.orderId = msg.sellerOrderId -> 
-                            ()
+                        //| SellPlaced sellOrder, msg  -> 
+                            log 2 $"-> SellPlaced: ${msg}"
+                            log 2 $"==End cycle=="
+                            //() Do this will make trader exit. 
+                            return! loop(NewTrader)
                         | _, _ ->
                             return! loop(state)
                     }
