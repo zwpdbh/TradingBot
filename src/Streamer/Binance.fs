@@ -26,6 +26,7 @@ module Binance =
             log 3 $"Trade event received: {event.symbol}@{event.price}"
 
             // TBD: change this part to broadcast tradeEvent
+            // How to broadcast event ?
             trader.ProcessTradeEvent event |> Async.RunSynchronously
         | msg -> 
             log 0 $"Unknown event: {msg}"
