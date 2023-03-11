@@ -5,9 +5,10 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-	<Compile Include="PubSub.fs" />
+
 	<Compile Include="Library.fs" />
     <Compile Include="Models.fs" />
+	<Compile Include="PubSub.fs" />
     <None Include="paket.references" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />

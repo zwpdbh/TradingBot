@@ -18,7 +18,7 @@ module Models =
             buyerMarketMarker: bool
             ignore: bool
         }
-
+    
 
     
     //{

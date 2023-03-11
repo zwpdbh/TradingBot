@@ -7,7 +7,7 @@ module Binance =
     open Common.Logging
     open Common.Models
     open Naive.Trader
-
+    
 
     // How to use websocket to do something similar from
     // https://book.elixircryptobot.com/stream-live-cryptocurrency-prices-from-the-binance-wss.html#create-a-supervised-application-inside-an-umbrella
@@ -25,6 +25,7 @@ module Binance =
         | GetTradeEvent event -> 
             log 3 $"Trade event received: {event.symbol}@{event.price}"
 
+            event |> Observable.map (fun x -> x)
             // TBD: change this part to broadcast tradeEvent
             // How to broadcast event ?
             trader.ProcessTradeEvent event |> Async.RunSynchronously
