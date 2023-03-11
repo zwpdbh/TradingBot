@@ -47,6 +47,9 @@ module Trader =
         let symbol = symbol 
         let profitInterval = profitInterval
 
+        // TBD: I need to find a way to subscribe for certain symbol to receive tradeEvent
+        // And process received tradeEvent.
+
         let agent = 
             MailboxProcessor<TradeEvent>.Start(fun inbox ->
                 let rec loop(state: TradeState) = 

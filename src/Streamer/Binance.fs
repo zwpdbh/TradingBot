@@ -24,6 +24,8 @@ module Binance =
         match msg.ToString() with 
         | GetTradeEvent event -> 
             log 3 $"Trade event received: {event.symbol}@{event.price}"
+
+            // TBD: change this part to broadcast tradeEvent
             trader.ProcessTradeEvent event |> Async.RunSynchronously
         | msg -> 
             log 0 $"Unknown event: {msg}"
