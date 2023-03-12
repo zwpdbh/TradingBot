@@ -16,6 +16,6 @@
         PubSubService.subscribe topic01 trader02 |> Async.RunSynchronously |> ignore
         PubSubService.subscribe topic01 trader03 |> Async.RunSynchronously |> ignore
 
-        Streamer.Binance.startStreaming "ethusd"
+        Streamer.Binance.startStreaming topic01
 
         0

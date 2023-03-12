@@ -23,7 +23,7 @@ module Binance =
         //printfn $"Received message: {msg}"
         match msg.ToString() with 
         | GetTradeEvent event -> 
-            // log 3 $"Trade event received: {event.symbol}@{event.price}"
+            log 3 $"Trade event received: {event.symbol}@{event.price}"
             //trader.ProcessTradeEvent event |> Async.RunSynchronously
 
             PubSubService.broadcast $"{event.symbol.ToUpper()}" event
