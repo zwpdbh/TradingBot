@@ -3,7 +3,7 @@
 module Trader = 
     open Common.Models
     open Common.Logging  
-
+    open Common.PubSub
 
     type BuyOrder = {
         price: decimal 
@@ -43,7 +43,8 @@ module Trader =
 
 
     // Our trader will be receiving trade events sequentially and take decisions based on its own state and trade event’s contents.
-    type Trader(symbol: string, profitInterval: decimal) = 
+    type Trader(id: string, symbol: string, profitInterval: decimal) =
+        let id = id 
         let symbol = symbol 
         let profitInterval = profitInterval
 
@@ -89,11 +90,16 @@ module Trader =
 
                 loop (NewTrader)
             )
-
         member x.ProcessTradeEvent tradeEvent = 
             async {
+                log 3 $"{id} event received: {tradeEvent.symbol}@{tradeEvent.price}"
                 agent.Post tradeEvent
             }
+
+        interface ITradeObserver with 
+            member x.processTradeEvent event = 
+                x.ProcessTradeEvent event 
+            member x.id = id
 
     //let 
     //let sendEvent (tradeEvent: TradeEvent) (profitInterval: decimal) = 

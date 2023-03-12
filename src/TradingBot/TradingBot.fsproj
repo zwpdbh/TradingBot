@@ -8,5 +8,10 @@
     <None Include="paket.references" />
     <Compile Include="Program.fs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.fsproj" />
+    <ProjectReference Include="..\Naive\Naive.fsproj" />
+    <ProjectReference Include="..\Streamer\Streamer.fsproj" />
+  </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
