@@ -20,7 +20,6 @@ module PubSub =
         let subscribers: Map<Topic, Map<string, ITradeObserver>> = 
             Map.empty
 
-
         let agent =
             MailboxProcessor<PubSubMsg>.Start(fun inbox ->
                 let rec loop(subscribers: Map<Topic, Map<string, ITradeObserver>>) =
